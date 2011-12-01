@@ -8,5 +8,13 @@ import org.joda.time.DateTime
  * Time: 2:39 PM
  */
 
-case class ParsedEvent(name:String, eventDate:DateTime, tags:List[String])
+case class ParsedEvent(name:String, eventDate:DateTime, tags:List[String]){
+  def toParams = {
+    Map(
+      "label" -> name,
+      "eventDate" -> eventDate.getMillis.toString,
+      "tags" -> tags.mkString (",")
+    )
+  }
+}
 

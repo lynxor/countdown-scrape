@@ -10,7 +10,7 @@ import java.io.InputStream
  * Time: 1:29 PM
  */
 
-class GamesWebScrapeTest extends Specification {
+class BtGamesScrapeTest extends Specification {
   "The scraper" should {
     "scrape some dates for me from the bt games release date page" in {
       val xmlStream:InputStream = getClass.getResourceAsStream("bt_release_dates.html")
