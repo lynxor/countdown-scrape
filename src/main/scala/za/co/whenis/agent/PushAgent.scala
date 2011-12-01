@@ -10,7 +10,7 @@ import za.co.whenis.ParsedEvent
  */
 
 object PushAgent {
-  val pushUrl = "http://localhost:55555/countdown/new"
+  val pushUrl = "http://localhost:55555/countdown/upsert"
 
 
   def pushEvents(event: ParsedEvent) = {
