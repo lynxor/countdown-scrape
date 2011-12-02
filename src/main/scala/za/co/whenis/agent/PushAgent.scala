@@ -9,13 +9,13 @@ import za.co.whenis.ParsedEvent
  * Time: 3:25 PM
  */
 
-object PushAgent {
-  val pushUrl = "http://localhost:55555/countdown/upsert"
+class PushAgent(host: String, port: Int) {
+  val pushUrl = :/(host, port) / "countdown" / "upsert"
 
 
   def pushEvents(event: ParsedEvent) = {
     val http = new Http
-    val req = url(pushUrl) <<? (event.toParams)
+    val req = pushUrl <<? (event.toParams)
 
     http(req >- {
       (s: String) => println(s) //do something with results?
