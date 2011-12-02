@@ -3,7 +3,7 @@ package za.co.whenis.game
 import co.za.whenis.game.BtGamesScrape
 import org.specs2.mutable._
 import java.io.InputStream
-import org.joda.time.DateTime
+import org.joda.time.{LocalDate, DateTime}
 
 /**
  * User: dawidmalan
@@ -20,7 +20,7 @@ class BtGamesScrapeTest extends Specification {
       results.length mustEqual 20
     }
     "Assassin's Creed Revelations' event date has to be parsed correctly" in  {
-      results.find( _.name == "Assasin's Creed Revelations" ).get.eventDate mustEqual new DateTime(2011,12,02)
+      results.find( _.name == "Assassin's Creed Revelations" ).get.eventDate mustEqual new LocalDate(2011,12,02).toDateTimeAtStartOfDay
     }
   }
 }

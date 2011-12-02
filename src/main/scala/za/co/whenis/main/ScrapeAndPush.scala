@@ -2,6 +2,8 @@ package za.co.whenis.main
 
 import co.za.whenis.game.BtGamesScrape
 import za.co.whenis.agent.PushAgent
+import org.joda.time.DateTime
+import za.co.whenis.movie.TeaserTrailerScrape
 
 /**
  * User: dawidmalan
@@ -20,5 +22,5 @@ object ScrapeAndPush extends App {
     }
   }
 
-  BtGamesScrape.getOnline.foreach(pushAgent.pushEvents)
+  BtGamesScrape.getOnline ++ new TeaserTrailerScrape(new DateTime).getOnline foreach(pushAgent.pushEvents)
 }
