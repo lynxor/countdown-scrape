@@ -1,14 +1,12 @@
-package co.za.whenis.game
+package za.co.whenis.scrape.game
 
-import org.ccil.cowan.tagsoup.jaxp.SAXFactoryImpl
-import scala.xml.parsing.NoBindingFactoryAdapter
 import org.xml.sax.InputSource
 import xml.{NodeSeq, Node}
 import java.io.InputStream
 import org.joda.time.format.DateTimeFormat
 import collection.mutable.ListBuffer
-import org.joda.time.{DateTime, LocalDate}
-import za.co.whenis.ParsedEvent
+import org.joda.time.DateTime
+import za.co.whenis.scrape.{ParsedEvent, Scraper}
 
 /**
  * User: dawidmalan
@@ -16,11 +14,8 @@ import za.co.whenis.ParsedEvent
  * Time: 8:42 AM
  */
 
-object BtGamesScrape {
+object BtGamesScrape extends Scraper{
   val url = "http://www.btgames.co.za/bt/release.asp"
-  val parserFactory = new SAXFactoryImpl
-  val parser = parserFactory.newSAXParser
-  val adapter = new NoBindingFactoryAdapter
   val monthYearFormat = DateTimeFormat.forPattern("MMMM, yyyy")
   val dayMonthFormat = DateTimeFormat.forPattern("dd MMMM")
 
@@ -28,7 +23,8 @@ object BtGamesScrape {
      val source = new InputSource(url)
     parseDates(adapter.loadXML(source, parser))
   }
-  def getDateItems(is: InputStream) = {
+
+  def getFrom(is: InputStream) = {
     val source = new InputSource(is)
     parseDates(adapter.loadXML(source, parser))
   }

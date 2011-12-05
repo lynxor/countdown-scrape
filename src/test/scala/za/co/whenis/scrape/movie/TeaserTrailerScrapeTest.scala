@@ -1,4 +1,4 @@
-package za.co.whenis.movie
+package za.co.whenis.scrape.movie
 
 import org.specs2.mutable._
 import java.io.InputStream

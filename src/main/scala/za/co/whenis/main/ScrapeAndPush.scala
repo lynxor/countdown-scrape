@@ -1,9 +1,12 @@
 package za.co.whenis.main
 
-import co.za.whenis.game.BtGamesScrape
 import za.co.whenis.agent.PushAgent
 import org.joda.time.DateTime
-import za.co.whenis.movie.TeaserTrailerScrape
+
+import za.co.whenis.scrape.Scraper
+import za.co.whenis.scrape.movie.TeaserTrailerScrape
+import za.co.whenis.scrape.game.BtGamesScrape
+import za.co.whenis.scrape.sport.{SuperSportScraper, AltSuperSportScraper}
 
 /**
  * User: dawidmalan
@@ -12,6 +15,12 @@ import za.co.whenis.movie.TeaserTrailerScrape
  */
 
 object ScrapeAndPush extends App {
+
+  val scrapers: List[Scraper] = List(
+    BtGamesScrape,
+    new TeaserTrailerScrape(new DateTime),
+    new AltSuperSportScraper,
+    new SuperSportScraper)
 
   val pushAgent = try {
     new PushAgent(args(0), args(1).toInt)
@@ -22,5 +31,5 @@ object ScrapeAndPush extends App {
     }
   }
 
-  BtGamesScrape.getOnline ++ new TeaserTrailerScrape(new DateTime).getOnline foreach(pushAgent.pushEvents)
+  scrapers.flatMap(_.getOnline) foreach (pushAgent.pushEvents)
 }

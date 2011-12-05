@@ -1,6 +1,5 @@
-package za.co.whenis.game
+package za.co.whenis.scrape.game
 
-import co.za.whenis.game.BtGamesScrape
 import org.specs2.mutable._
 import java.io.InputStream
 import org.joda.time.{LocalDate, DateTime}
@@ -13,7 +12,7 @@ import org.joda.time.{LocalDate, DateTime}
 
 class BtGamesScrapeTest extends Specification {
   val xmlStream:InputStream = getClass.getResourceAsStream("bt_release_dates.html")
-  val results = BtGamesScrape.getDateItems(xmlStream)
+  val results = BtGamesScrape.getFrom(xmlStream)
 
   "The scraper" should {
     "scrape some dates for me from the bt games release date page" in {

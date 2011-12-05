@@ -1,7 +1,7 @@
 package za.co.whenis.agent
 
 import dispatch._
-import za.co.whenis.ParsedEvent
+import za.co.whenis.scrape.ParsedEvent
 
 /**
  * User: dawidmalan

@@ -1,4 +1,4 @@
-package za.co.whenis
+package za.co.whenis.scrape
 
 import org.joda.time.DateTime
 

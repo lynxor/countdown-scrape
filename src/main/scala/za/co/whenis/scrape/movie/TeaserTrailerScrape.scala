@@ -1,15 +1,13 @@
-package za.co.whenis.movie
+package za.co.whenis.scrape.movie
 
-import org.ccil.cowan.tagsoup.jaxp.SAXFactoryImpl
-import xml.parsing.NoBindingFactoryAdapter
 import org.joda.time.format.DateTimeFormat
 import org.xml.sax.InputSource
 import java.io.InputStream
-import za.co.whenis.ParsedEvent
-import xml.{NodeSeq, Node}
+import xml.Node
 import scalaz._
 import Scalaz._
 import org.joda.time.DateTime
+import za.co.whenis.scrape.{ParsedEvent, Scraper}
 
 /**
  * User: dawidmalan
@@ -17,13 +15,9 @@ import org.joda.time.DateTime
  * Time: 2:47 PM
  */
 
-class TeaserTrailerScrape(minDate: DateTime) {
+class TeaserTrailerScrape(minDate: DateTime) extends Scraper {
 
-  val parserFactory = new SAXFactoryImpl
-  val parser = parserFactory.newSAXParser
-  val adapter = new NoBindingFactoryAdapter
   val dateFormat = DateTimeFormat.forPattern("dd MMM yyyy")
-
   val dateRegex = """\w{3}\s\d{2}\,\s\w{3}\s\d{4}""".r
 
   def getOnline = {
